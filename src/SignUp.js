@@ -6,17 +6,24 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 // create a component
-const Login = ({navigation}) => {
+const SignUp = ({navigation}) => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={{fontWeight: '100', fontSize: 34, marginBottom: 10 }}>Welcome Back</Text>
+            <Text style={{fontWeight: '100', fontSize: 34, marginBottom: 10 }}>Welcome</Text>
             <Text style={{ marginBottom: 10, fontSize: 18 }}>
-                Sign in to continue
+                SignUp to continue
             </Text>
             <View  style={styles.form}>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Name"
+                    value={name}
+                    onChange={(name) => {setName(name)}}
+                />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
@@ -30,16 +37,13 @@ const Login = ({navigation}) => {
                     onChange={(password) => {setPassword(password)}}
                 />
 
-                <Text style={{fontWeight: '100', fontSize: 10}}>
-                    Dont have a account, sign up now!
-                </Text>
-
                 <TouchableOpacity
                     style={styles.button2}
-                    onPress={() => navigation.navigate('SignUp')}
+                    onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style={{color:'white'}}>SignUp</Text>
+                    <Text style={{color:'white'}}>Login</Text>
                 </TouchableOpacity>
+  
             </View>
            
             
@@ -48,7 +52,7 @@ const Login = ({navigation}) => {
                 style={styles.button}
                 onPress={() => navigation.navigate('Home')}
             >
-                <Text style={{color:'white'}}>Login</Text>
+                <Text style={{color:'white'}}>SignUp</Text>
             </TouchableOpacity>
 
         </SafeAreaView>
@@ -95,4 +99,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default Login;
+export default SignUp;

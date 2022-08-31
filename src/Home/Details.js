@@ -103,7 +103,6 @@ const Details = () => {
                             sliderWidth={Dimensions.get('window').width}
                             itemWidth={300}
                             containerCustomStyle={styles.carousel}
-
                         />
                     </View>
 
