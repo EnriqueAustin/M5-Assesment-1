@@ -1,6 +1,8 @@
 //import liraries
 import React, { Component, useState } from 'react';
 import { View, Dimensions, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
+import { registration } from './Backend/Authentication';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -10,6 +12,10 @@ const SignUp = ({navigation}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const signUser=() => {
+        registration(email,password,name)
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -21,19 +27,23 @@ const SignUp = ({navigation}) => {
                 <TextInput
                     style={styles.input}
                     placeholder="Name"
-                    value={name}
+                    
+                    name='name'
                     onChange={(name) => {setName(name)}}
+                    value={name}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
                     value={email}
+                    name='email'
                     onChange={(email) => {setEmail(email)}}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Password"
                     value={password}
+                    name='password'
                     onChange={(password) => {setPassword(password)}}
                 />
 
@@ -50,7 +60,7 @@ const SignUp = ({navigation}) => {
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('Home')}
+                onPress={signUser}
             >
                 <Text style={{color:'white'}}>SignUp</Text>
             </TouchableOpacity>
@@ -87,9 +97,9 @@ const styles = StyleSheet.create({
     button2:{
         margin: 10,
         backgroundColor: 'red',
-        alignItems: "center",
+        alignItems: "flex-start",
         borderRadius:10,
-        padding: 10,
+        padding: 2,
         
     },
     form:{
