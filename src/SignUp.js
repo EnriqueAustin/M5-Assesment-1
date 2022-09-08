@@ -27,24 +27,23 @@ const SignUp = ({navigation}) => {
                 <TextInput
                     style={styles.input}
                     placeholder="Name"
-                    
-                    name='name'
-                    onChange={(name) => {setName(name)}}
                     value={name}
+                    name='name'
+                    onChangeText={(name) => {setName(name)}}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
                     value={email}
                     name='email'
-                    onChange={(email) => {setEmail(email)}}
+                    onChangeText={(email) => {setEmail(email)}}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Password"
                     value={password}
                     name='password'
-                    onChange={(password) => {setPassword(password)}}
+                    onChangeText={(password) => {setPassword(password)}}
                 />
 
                 <TouchableOpacity

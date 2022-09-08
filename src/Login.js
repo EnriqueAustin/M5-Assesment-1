@@ -1,6 +1,8 @@
 //import liraries
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { View, Dimensions, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
+import { handleLogin } from './Backend/Authentication';
+import * as firebase from 'firebase';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -9,6 +11,10 @@ const windowHeight = Dimensions.get('window').height;
 const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const logInUser=() => {
+        handleLogin(email,password);
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -21,13 +27,13 @@ const Login = ({navigation}) => {
                     style={styles.input}
                     placeholder="Email"
                     value={email}
-                    onChange={(email) => {setEmail(email)}}
+                    onChangeText={(email) => {setEmail(email)}}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Password"
                     value={password}
-                    onChange={(password) => {setPassword(password)}}
+                    onChangeText={(password) => {setPassword(password)}}
                 />
 
                 <Text style={{fontWeight: '100', fontSize: 10}}>
@@ -46,7 +52,7 @@ const Login = ({navigation}) => {
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('Home')}
+                onPress={logInUser}
             >
                 <Text style={{color:'white'}}>Login</Text>
             </TouchableOpacity>

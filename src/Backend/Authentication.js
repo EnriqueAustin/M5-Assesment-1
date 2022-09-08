@@ -8,9 +8,21 @@ export async function registration(email, password, name){
 
         const db = firebase.firestore();
         db.collection('user').doc(currentUser.uid).set({
-                name: email,
+                name: name,
+                email: email,
                 password: password,
             })
+    } catch (error) {
+        Alert.alert('There is something wrong', error.message)
+    }
+}
+
+export async function handleLogin(email, password){
+    try {
+        await firebase.auth().signInWithEmailAndPassword(email, password);
+        const currentUser = firebase.auth().currentUser;
+
+        
     } catch (error) {
         Alert.alert('There is something wrong', error.message)
     }
