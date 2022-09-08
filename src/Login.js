@@ -2,6 +2,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { View, Dimensions, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { handleLogin } from './Backend/Authentication';
+import firebaseConfig from './firebaseConfig';
 import * as firebase from 'firebase';
 
 const windowWidth = Dimensions.get('window').width;
@@ -15,6 +16,15 @@ const Login = ({navigation}) => {
     const logInUser=() => {
         handleLogin(email,password);
     }
+
+    useEffect(() => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                navigation.navigate('Home')
+            }
+        })
+        return unsubscribe;
+    }, [])
 
     return (
         <SafeAreaView style={styles.container}>
